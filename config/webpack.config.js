@@ -28,6 +28,8 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
 const postcssNormalize = require('postcss-normalize');
 
+const px2rem = require('postcss-px2rem-exclude');
+
 const appPackageJson = require(paths.appPackageJson);
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -108,6 +110,8 @@ module.exports = function(webpackEnv) {
               },
               stage: 3,
             }),
+            // 配置rem
+            px2rem({remUit: 75, exclude: /node_modules/i}),
             // Adds PostCSS Normalize as the reset css with default options,
             // so that it honors browserslist config in package.json
             // which in turn let's users customize the target behavior as per their needs.
